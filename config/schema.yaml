@@ -1,0 +1,3 @@
+target_col: loss
+
+categorical_cols:
