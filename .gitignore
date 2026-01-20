@@ -9,3 +9,5 @@ insurance/
 .env
 .vscode
 .git
+
+catboost_info
