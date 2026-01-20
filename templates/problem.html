@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Statement</title>
+
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="/static/base.css">
+</head>
+
+<body>
+
+    <div class="page-container glass">
+
+        <a href="/">← Back to Home</a>
+
+        <!-- Top Image -->
+        <img
+            src="assets/allstate_banner-660x120.png"
+            alt="Problem Illustration"
+            style="
+                width: 100%;
+                max-width: 500px;
+                margin: 12px 0 28px 0;
+                display: block;
+            "
+        >
+
+        <!-- Title back to red -->
+        <h1 style="color: #f87171;">Problem Statement</h1>
+
+        <p>
+            Insurance companies process a large volume of claims with highly
+            variable costs. While most claims are relatively small, a small
+            fraction of extreme claims contributes disproportionately to total
+            losses. Accurately modeling this tail behavior is therefore critical
+            for effective risk management.
+        </p>
+
+        <h2>Why Claim Severity Modeling Matters</h2>
+        <p>
+            Claim severity estimation plays a central role in pricing, reserving,
+            and capital planning. Underestimating severe claims can lead to
+            insufficient reserves and unexpected financial stress, while
+            overestimation results in inefficient capital usage.
+        </p>
+
+        <p>
+            Traditional mean-based regression models fail to capture the
+            asymmetric and heavy-tailed nature of insurance losses. From a
+            business perspective, the cost of underpredicting extreme claims is
+            far greater than overpredicting small ones.
+        </p>
+
+        <h2>Dataset Description</h2>
+        <p>
+            This project uses the Allstate Claims Severity dataset, originally
+            released as a Kaggle competition. Each row represents an individual
+            insurance claim with anonymized policy and claim attributes.
+        </p>
+
+        <p>
+            <a
+                href="https://www.kaggle.com/competitions/allstate-claims-severity"
+                target="_blank"
+                style="
+                    color: #60a5fa;
+                    text-decoration: underline;
+                    font-weight: normal;
+                "
+            >
+                Dataset link
+            </a>
+        </p>
+
+        <!-- Dataset Summary Table -->
+        <div style="overflow-x: auto; margin: 24px 0 32px 0;">
+            <table style="
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.95rem;
+            ">
+                <thead>
+                    <tr style="background: rgba(255,255,255,0.08);">
+                        <th style="text-align: left; padding: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                            Attribute
+                        </th>
+                        <th style="text-align: left; padding: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                            Description
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Number of Records
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            ~188,000 insurance claims
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Continuous Features
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            14 (cont1 – cont14)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Categorical Features
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            116 (cat1 – cat116)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Target Variable
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Insurance claim loss (severity)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Missing Values
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            None
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Feature Semantics
+                        </td>
+                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                            Anonymized
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Key Challenges</h2>
+        <ul>
+            <li>Highly skewed loss distribution with a long right tail</li>
+            <li>Presence of extreme outliers with large financial impact</li>
+            <li>High-dimensional feature space dominated by categorical variables</li>
+            <li>Limited interpretability due to anonymized features</li>
+        </ul>
+
+        <h2>Why Quantile Regression</h2>
+        <p>
+            To address these challenges, this project adopts a quantile
+            regression framework. Instead of predicting the expected claim cost,
+            the model directly estimates conditional quantiles such as the 90th
+            and 95th percentiles.
+        </p>
+
+        <p>
+            This approach enables explicit control over tail risk and provides
+            actionable thresholds for stress testing, pricing strategies, and
+            operational decision-making.
+        </p>
+
+        <h2>Project Objective</h2>
+        <p>
+            The objective is to build a robust quantile regression model that
+            delivers reliable and well-calibrated predictions in the upper tail
+            of the claim severity distribution.
+        </p>
+
+    </div>
+
+    <div class="footer">
+        © 2026 · Tail Risk Modeling Project
+    </div>
+
+</body>
+</html>
