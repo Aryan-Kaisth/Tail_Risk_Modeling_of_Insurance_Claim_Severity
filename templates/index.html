@@ -5,16 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tail Risk Modeling</title>
 
-    <!-- Static CSS -->
-    <link rel="stylesheet" href="/static/base.css">
+    <!-- Static CSS (cache-busted recommended) -->
+    <link rel="stylesheet" href="/static/base.css?v=0.4">
 </head>
 
 <body class="center">
 
     <div class="container">
+
         <!-- LEFT CONTENT -->
         <div class="left glass">
+
+            <!-- 🔥 Banner -->
+            <img
+                src="/assets/banner.png"
+                alt="Tail Risk Modeling Banner"
+                style="
+                    width: 100%;
+                    max-height: 180px;
+                    object-fit: cover;
+                    border-radius: 14px;
+                    margin-bottom: 24px;
+                    opacity: 0.95;
+                "
+            >
+
             <h1>Tail Risk Modeling of Insurance Claims</h1>
+
             <p>
                 This application demonstrates a quantile regression–based approach
                 to modeling insurance claim severity, with a specific focus on
@@ -26,11 +43,13 @@
                 pricing, capital allocation, and stress testing decisions in
                 real-world insurance settings.
             </p>
+
         </div>
 
         <!-- RIGHT NAV PANEL -->
         <div class="right">
             <div class="nav-panel glass">
+
                 <button class="btn" onclick="location.href='/problem'">
                     📄 Problem Statement
                 </button>
@@ -40,14 +59,16 @@
                 </button>
 
                 <button class="btn secondary" onclick="location.href='/explorer'">
-                    🔍 Risk Explorer
+                    🔍 Claim Risk Analysis
                 </button>
+
             </div>
         </div>
+
     </div>
 
     <div class="footer">
-        © 2026 · Tail Risk Modeling Project
+        Author: Aryan kaisth 🙂
     </div>
 
 </body>

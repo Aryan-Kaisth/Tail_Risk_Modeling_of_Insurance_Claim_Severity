@@ -6,7 +6,7 @@
     <title>Problem Statement</title>
 
     <!-- Static CSS -->
-    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/base.css?v=0.4">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <!-- Top Image -->
         <img
             src="assets/allstate_banner-660x120.png"
-            alt="Problem Illustration"
+            alt="Allstate Claims Severity"
             style="
                 width: 100%;
                 max-width: 500px;
@@ -27,37 +27,54 @@
             "
         >
 
-        <!-- Title back to red -->
         <h1 style="color: #f87171;">Problem Statement</h1>
 
         <p>
-            Insurance companies process a large volume of claims with highly
-            variable costs. While most claims are relatively small, a small
-            fraction of extreme claims contributes disproportionately to total
-            losses. Accurately modeling this tail behavior is therefore critical
-            for effective risk management.
+            In real-world insurance systems, not all claims are created equal.
+            While the majority of claims result in relatively small payouts,
+            a small fraction of extreme losses accounts for a disproportionate
+            share of total cost. These rare but severe events are what ultimately
+            drive profitability, solvency, and long-term risk exposure.
+        </p>
+
+        <p>
+            During my exploration of insurance loss data, it became clear that
+            traditional modeling approaches—focused primarily on average outcomes—
+            are poorly suited for this setting. What truly matters in practice
+            is not the “typical” claim, but the worst plausible losses that occur
+            in the tail of the distribution.
         </p>
 
         <h2>Why Claim Severity Modeling Matters</h2>
+
         <p>
-            Claim severity estimation plays a central role in pricing, reserving,
-            and capital planning. Underestimating severe claims can lead to
-            insufficient reserves and unexpected financial stress, while
-            overestimation results in inefficient capital usage.
+            Claim severity estimation plays a critical role in pricing policies,
+            setting loss reserves, allocating capital, and meeting regulatory
+            solvency requirements. Even small systematic underestimation of
+            severe claims can lead to material financial stress for insurers.
         </p>
 
         <p>
-            Traditional mean-based regression models fail to capture the
-            asymmetric and heavy-tailed nature of insurance losses. From a
-            business perspective, the cost of underpredicting extreme claims is
-            far greater than overpredicting small ones.
+            From a business perspective, the cost of underpredicting a high-loss
+            claim is far greater than overpredicting a small one. This inherent
+            asymmetry makes the problem fundamentally different from standard
+            regression tasks encountered in many machine learning applications.
         </p>
 
-        <h2>Dataset Description</h2>
+        <h2>Dataset Overview</h2>
+
         <p>
-            This project uses the Allstate Claims Severity dataset, originally
-            released as a Kaggle competition. Each row represents an individual
-            insurance claim with anonymized policy and claim attributes.
+            This project is based on the
+            <strong>Allstate Claims Severity dataset</strong>, originally released
+            as a Kaggle competition. Each observation represents an individual
+            insurance claim, described by a combination of continuous and
+            high-cardinality categorical features.
+        </p>
+
+        <p>
+            Although the features are anonymized, the dataset closely mirrors
+            the complexity of real insurance data: high dimensionality,
+            heterogeneous feature types, and a highly skewed target variable.
         </p>
 
         <p>
@@ -70,7 +87,7 @@
                     font-weight: normal;
                 "
             >
-                Dataset link
+                View dataset on Kaggle
             </a>
         </p>
 
@@ -97,7 +114,7 @@
                             Number of Records
                         </td>
                         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            ~188,000 insurance claims
+                            ~188,000 historical insurance claims
                         </td>
                     </tr>
                     <tr>
@@ -105,7 +122,7 @@
                             Continuous Features
                         </td>
                         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            14 (cont1 – cont14)
+                            14 normalized numerical attributes (cont1 – cont14)
                         </td>
                     </tr>
                     <tr>
@@ -113,7 +130,7 @@
                             Categorical Features
                         </td>
                         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            116 (cat1 – cat116)
+                            116 high-cardinality categorical variables (cat1 – cat116)
                         </td>
                     </tr>
                     <tr>
@@ -121,15 +138,7 @@
                             Target Variable
                         </td>
                         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            Insurance claim loss (severity)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            Missing Values
-                        </td>
-                        <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            None
+                            Claim severity (monetary loss amount)
                         </td>
                     </tr>
                     <tr>
@@ -137,46 +146,51 @@
                             Feature Semantics
                         </td>
                         <td style="padding: 10px; border: 1px solid rgba(255,255,255,0.15);">
-                            Anonymized
+                            Anonymized to reflect realistic enterprise data constraints
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <h2>Key Challenges</h2>
+        <h2>Core Challenges</h2>
         <ul>
-            <li>Highly skewed loss distribution with a long right tail</li>
-            <li>Presence of extreme outliers with large financial impact</li>
-            <li>High-dimensional feature space dominated by categorical variables</li>
-            <li>Limited interpretability due to anonymized features</li>
+            <li>Extremely skewed loss distribution with a heavy right tail</li>
+            <li>Rare but high-impact claims that dominate total loss exposure</li>
+            <li>High-dimensional feature space driven largely by categorical inputs</li>
+            <li>Limited interpretability due to anonymized feature definitions</li>
         </ul>
 
-        <h2>Why Quantile Regression</h2>
+        <h2>Why Quantile Regression?</h2>
+
         <p>
-            To address these challenges, this project adopts a quantile
-            regression framework. Instead of predicting the expected claim cost,
-            the model directly estimates conditional quantiles such as the 90th
-            and 95th percentiles.
+            To directly address these challenges, I adopted a
+            <strong>quantile regression framework</strong>. Rather than predicting
+            an average claim cost, the model estimates conditional upper-tail
+            quantiles such as the 90th percentile.
         </p>
 
         <p>
-            This approach enables explicit control over tail risk and provides
-            actionable thresholds for stress testing, pricing strategies, and
-            operational decision-making.
+            This approach aligns naturally with insurance decision-making.
+            Quantile estimates provide explicit, risk-aware thresholds that can
+            be used for stress testing, conservative pricing, and capital
+            adequacy planning.
         </p>
 
         <h2>Project Objective</h2>
+
         <p>
-            The objective is to build a robust quantile regression model that
-            delivers reliable and well-calibrated predictions in the upper tail
-            of the claim severity distribution.
+            The objective of this project is to build a robust, well-calibrated
+            quantile regression model that produces reliable upper-tail loss
+            estimates on unseen claims — and to present these predictions through
+            an interactive system that emphasizes interpretability and risk
+            awareness.
         </p>
 
     </div>
 
     <div class="footer">
-        © 2026 · Tail Risk Modeling Project
+        Author: Aryan Kaisth 🙂
     </div>
 
 </body>

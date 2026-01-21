@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Explorer</title>
+
+    <link rel="stylesheet" href="/static/base.css?v=0.4">
+</head>
+
+<body>
+
+    <div class="page-container glass">
+
+        <a href="/">← Back to Home</a>
+
+        <h1>Claim Risk Analysis</h1>
+
+        <p>
+            This interactive section allows exploration of the trained
+            <strong>quantile regression model</strong> on unseen insurance claims.
+            Each interaction samples a random claim from the test set and reports
+            a conservative upper-tail loss estimate.
+        </p>
+
+        <p>
+            The model predicts the <strong>90th percentile (τ = 0.90)</strong>,
+            focusing on tail risk rather than average outcomes.
+        </p>
+
+        <p>
+            Below, the predicted quantile is contrasted against the realized claim
+            outcome and positioned within the empirical loss distribution.
+        </p>
+
+        <!-- Action -->
+        <button class="btn" onclick="sampleClaim()" style="margin-top: 24px; max-width: 260px;">
+            Generate Random Test Data
+        </button>
+
+        <!-- Results -->
+        <div id="result" class="result-card" style="display: none;">
+
+            <h2>Prediction Summary</h2>
+
+            <p class="prediction" id="predicted-text"></p>
+
+            <div class="metric-group">
+                <div class="metric" id="actual-text"></div>
+                <div class="metric" id="pinball-text"></div>
+            </div>
+
+            <p class="hint">
+                The pinball loss reflects the asymmetric penalty structure of
+                quantile regression, where underestimation near the tail is
+                penalized more heavily than overestimation.
+            </p>
+
+            <!-- Distribution Plot -->
+            <div style="margin-top: 20px;">
+                <h2>Loss Distribution Context</h2>
+                <p style="font-size: 0.95rem;">
+                    The figure below shows the empirical distribution of test-set
+                    claim losses. The vertical markers indicate the model’s
+                    predicted 90th percentile and the actual observed claim.
+                </p>
+
+                <img
+                    id="tail-plot"
+                    alt="Tail Risk Distribution"
+                    style="
+                        width: 100%;
+                        max-height: 400px;
+                        object-fit: contain;
+                        margin-top: 14px;
+                        border-radius: 12px;
+                        border: 1px solid rgba(255,255,255,0.15);
+                    "
+                />
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Author: Aryan kaisth 🙂
+    </div>
+
+    <script>
+        async function sampleClaim() {
+            const response = await fetch("/explore/sample");
+            const data = await response.json();
+
+            document.getElementById("predicted-text").innerHTML =
+                `Predicted 90th percentile loss: <strong>₹ ${data.predicted_loss.toFixed(2)}</strong>`;
+
+            document.getElementById("actual-text").innerHTML =
+                `Actual observed loss: ₹ ${data.actual_loss.toFixed(2)}`;
+
+            document.getElementById("pinball-text").innerHTML =
+                `Pinball loss (τ = 0.90): ${data.pinball_loss.toFixed(2)}`;
+
+            document.getElementById("tail-plot").src =
+                "data:image/png;base64," + data.tail_plot;
+
+            document.getElementById("result").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>

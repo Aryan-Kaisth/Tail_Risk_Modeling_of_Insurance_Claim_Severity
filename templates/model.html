@@ -6,7 +6,7 @@
     <title>Model & Evaluation</title>
 
     <!-- Static CSS -->
-    <link rel="stylesheet" href="/static/base.css">
+    <link rel="stylesheet" href="/static/base.css?v=0.4">
 </head>
 
 <body>
@@ -20,9 +20,9 @@
         <p>
             This section describes the modeling approach used to estimate tail
             risk in insurance claim severity and the metrics employed to evaluate
-            performance. The focus here is on the learning objective, model
-            suitability for the dataset, and the reliability of predictions in
-            the upper tail rather than on average error minimization.
+            performance. The emphasis is on understanding the learning objective
+            and evaluation criteria relevant to tail-focused prediction, rather
+            than on average error minimization.
         </p>
 
         <h2>Model Choice: CatBoost Quantile Regression</h2>
@@ -38,20 +38,19 @@
         >
 
         <p>
-            The Allstate Claims Severity dataset contains a high-dimensional mix
-            of continuous and categorical variables with anonymized semantics.
-            This makes linear models and naive one-hot encoding approaches
-            unsuitable due to feature explosion and limited capacity to model
-            non-linear interactions.
+            The Allstate Claims Severity dataset consists of a high-dimensional
+            mix of continuous and categorical features with anonymized semantics.
+            This structure makes linear models and naive one-hot encoding
+            approaches impractical due to feature explosion and limited ability
+            to capture non-linear interactions.
         </p>
 
         <p>
-            CatBoost was selected due to its native handling of categorical
-            features via ordered target statistics, which reduces target leakage
-            while avoiding sparse high-dimensional representations. As a
-            tree-based ensemble method, it is well-suited for modeling complex
-            interactions and skewed loss distributions commonly observed in
-            insurance data.
+            CatBoost was selected due to its native support for categorical
+            variables through ordered target statistics, which reduces target
+            leakage while avoiding sparse representations. As a tree-based
+            ensemble method, it is well-suited for modeling complex interactions
+            and skewed loss distributions commonly observed in insurance data.
         </p>
 
         <h2>Quantile Objective (τ = 0.90)</h2>
@@ -64,35 +63,33 @@
         </p>
 
         <p>
-            This objective directly aligns with tail-risk estimation, where the
-            cost of underestimating large claims is significantly higher than
-            overestimating smaller ones.
+            This formulation aligns naturally with risk-sensitive decision
+            making, where underestimating high-severity claims is substantially
+            more costly than conservative overestimation.
         </p>
 
         <h2>Evaluation Metrics</h2>
 
-        <h2>Pinball Loss</h2>
+        <h2>Pinball Loss (aka. Quantile Loss)</h2>
 
         <p>
-            Pinball loss is the standard loss function used in quantile
-            regression. Unlike symmetric error metrics, it applies asymmetric
-            penalties depending on whether predictions fall above or below the
-            target, with the degree of asymmetry controlled by the quantile
-            level τ.
+            Pinball loss is the canonical loss function used in quantile
+            regression. It applies asymmetric penalties depending on whether the
+            predicted quantile lies above or below the observed value, with the
+            degree of asymmetry controlled by the quantile level τ.
         </p>
 
         <p>
-            For τ = 0.90, underprediction is penalized more heavily than
-            overprediction, reflecting the higher cost associated with
-            underestimating extreme insurance losses. This makes pinball loss
-            particularly suitable for tail-focused risk modeling.
+            For upper quantiles such as τ = 0.90, underprediction incurs a
+            heavier penalty than overprediction. This makes pinball loss
+            particularly suitable for tail-risk modeling, where missing extreme
+            outcomes is more harmful than predicting conservatively.
         </p>
 
         <p>
-            <strong>Interpretation:</strong> Lower values indicate better
-            performance. There is no fixed upper bound, and values are scale-
-            dependent on the target variable. Pinball loss should be compared
-            across models trained on the same data and quantile.
+            Pinball loss is scale-dependent and does not have a fixed upper
+            bound. As a result, it is most informative when comparing competing
+            models trained on the same dataset and quantile objective.
         </p>
 
         <img
@@ -106,31 +103,26 @@
             "
         >
 
-        <p>
-            The model achieves a pinball loss of <strong>337.9054</strong>,
-            indicating stable learning behavior under a highly skewed loss
-            distribution and controlled error in the upper tail.
-        </p>
-
-        <h2>D² (Quantile R²)</h2>
+        <h2>D² Pinball Score (Quantile R² Score)</h2>
 
         <p>
-            D² is a quantile analogue of the traditional R² metric. It measures
-            the relative improvement of the trained model over a naive baseline
-            that predicts an unconditional quantile, rather than the mean.
+            D² is a quantile-specific analogue of the traditional R² metric used
+            in mean regression. It measures the relative improvement of a
+            quantile regression model over a naive baseline that predicts an
+            unconditional quantile.
         </p>
 
         <p>
-            This metric captures how much explanatory power the model provides
-            when estimating conditional quantiles, making it more appropriate
-            than classical R² for quantile regression tasks.
+            Unlike classical R², D² evaluates how well the model explains
+            variation in the conditional quantile rather than the conditional
+            mean. This makes it a more appropriate measure of explanatory power
+            for quantile-based objectives.
         </p>
 
         <p>
-            <strong>Interpretation:</strong> D² typically ranges from negative
-            values to 1. A value close to 0 indicates little improvement over
-            the baseline, while higher positive values indicate stronger
-            predictive power. Higher is better.
+            D² values typically range from negative values to 1. Higher values
+            indicate stronger explanatory power relative to the baseline, while
+            values near zero suggest limited improvement.
         </p>
 
         <img
@@ -144,12 +136,6 @@
             "
         >
 
-        <p>
-            The obtained D² value of <strong>0.4859</strong> suggests that the
-            model explains a substantial portion of the variation in the
-            conditional 90th percentile of claim severity.
-        </p>
-
         <h2>Coverage</h2>
 
         <p>
@@ -160,55 +146,131 @@
         </p>
 
         <p>
-            In practice, coverage is used to assess whether the model
-            systematically underestimates or overestimates risk in the tail.
-            This metric is particularly important for decision-making contexts
-            such as reserving and stress testing.
+            Coverage is particularly important in tail-risk applications, as
+            systematic under- or over-coverage directly translates into
+            misestimation of risk thresholds used for reserving and pricing.
         </p>
 
         <p>
-            <strong>Interpretation:</strong> Coverage values range between 0 and
-            1. For a τ = 0.90 model, values close to 0.90 indicate good
-            calibration. Values significantly below the target suggest
-            underestimation of risk, while values well above suggest overly
-            conservative predictions.
+            Coverage values lie between 0 and 1. Deviations from the target
+            quantile indicate miscalibration, even if other accuracy metrics
+            appear favorable.
         </p>
 
         <img
-            src="/assets/coverage.png"
+            src="/assets/coverage.jpeg"
             alt="Coverage Calibration Visualization"
             style="
                 width: 100%;
-                max-width: 720px;
+                max-width: 500px;
                 margin: 16px 0 24px 0;
                 display: block;
             "
         >
 
-        <p>
-            The model achieves an empirical coverage of <strong>0.8940</strong>,
-            which is very close to the nominal target, indicating reliable
-            tail-risk calibration.
-        </p>
-
-        <h2>Key Takeaways & Limitations</h2>
+        <h2>Model Performance Interpretation</h2>
 
         <p>
-            Overall, the CatBoost-based quantile regression model demonstrates
-            strong performance in estimating upper-tail claim severity, with
-            metrics indicating both predictive power and good calibration.
+            When evaluated under the 0.90 quantile objective, the trained
+            CatBoost model demonstrates stable tail-focused performance across
+            all three evaluation criteria.
         </p>
 
         <p>
-            The current evaluation is based on a single train–validation split.
-            Future work will focus on cross-validation, additional tail
-            diagnostics, and robustness checks under distributional shifts.
+            The D² value of 0.4859 implies that the model explains approximately
+            48% of the variation in the conditional 90th percentile relative to a
+            naive quantile baseline.
         </p>
+
+        <p>
+            The empirical coverage of 0.8940 is very close to the nominal target
+            of 0.90, indicating good calibration. The model achieves a mean pinball loss of 341.46, 
+            indicating stable performance under the 0.90 quantile objective.
+        </p>
+
+        <!-- ROW 1 -->
+        <div
+            style="
+                display: flex;
+                gap: 28px;
+                margin-top: 22px;
+                flex-wrap: wrap;
+            "
+        >
+            <div
+                style="
+                    flex: 1;
+                    min-width: 300px;
+                    background: rgba(255,255,255,0.06);
+                    border: 1px solid rgba(255,255,255,0.18);
+                    border-radius: 16px;
+                    padding: 18px;
+                "
+            >
+                <h3 style="margin-bottom: 12px; color: #c7d2fe;">
+                    Quantile Prediction Behavior
+                </h3>
+
+                <img
+                    src="/assets/newplot.png"
+                    alt="Model Output Visualization"
+                    style="width: 100%; border-radius: 12px;"
+                >
+            </div>
+
+            <div
+                style="
+                    flex: 1;
+                    min-width: 300px;
+                    background: rgba(255,255,255,0.06);
+                    border: 1px solid rgba(255,255,255,0.18);
+                    border-radius: 16px;
+                    padding: 18px;
+                "
+            >
+                <h3 style="margin-bottom: 12px; color: #c7d2fe;">
+                    Top Feature Importances
+                </h3>
+
+                <img
+                    src="/assets/feature_imp.png"
+                    alt="Feature Importance Visualization"
+                    style="width: 100%; border-radius: 12px;"
+                >
+            </div>
+        </div>
+
+        <!-- ROW 2 -->
+        <div
+            style="
+                margin-top: 28px;
+                background: rgba(255,255,255,0.06);
+                border: 1px solid rgba(255,255,255,0.18);
+                border-radius: 16px;
+                padding: 18px;
+            "
+        >
+            <h3 style="margin-bottom: 12px; color: #c7d2fe;">
+                Model Evaluation Metrics
+            </h3>
+
+            <img
+                src="/assets/metrics.png"
+                alt="Model Metrics Visualization"
+                style="
+                    width: 100%;
+                    max-width: 520px;
+                    margin: auto;
+                    border-radius: 12px;
+                    display: block;
+                "
+            >
+        </div>
 
     </div>
 
     <div class="footer">
-        © 2026 · Tail Risk Modeling Project
+        Author: Aryan Kaisth 🙂
     </div>
 
 </body>
