@@ -1,0 +1,3 @@
+[2026-01-21 21:43:03,913] 19 root - INFO - [INIT] Loading preprocessor
+[2026-01-21 21:43:04,108] 22 root - INFO - [INIT] Loading trained model
+[2026-01-21 21:43:04,108] 25 root - INFO - [INIT] PredictionPipeline initialized successfully

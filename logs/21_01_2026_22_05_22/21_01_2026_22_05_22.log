@@ -1,0 +1,263 @@
+[2026-01-21 22:05:24,087] 19 root - INFO - [INIT] Loading preprocessor
+[2026-01-21 22:05:24,252] 22 root - INFO - [INIT] Loading trained model
+[2026-01-21 22:05:24,262] 25 root - INFO - [INIT] PredictionPipeline initialized successfully
+[2026-01-21 22:05:50,107] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:50,107] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:50,141] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:50,145] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:51,066] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:51,066] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:51,084] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:51,084] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:51,415] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:51,415] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:51,452] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:51,468] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:51,589] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:51,589] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:51,621] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:51,621] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:51,747] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:51,747] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:51,794] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:51,794] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:51,904] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:51,904] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:51,923] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:51,942] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,048] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,048] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,084] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,084] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,180] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,180] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,200] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,200] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,306] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,306] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,344] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,344] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,434] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,434] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,466] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,466] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,555] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,555] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,591] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,591] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,751] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,751] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,770] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,770] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:52,911] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:52,911] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:52,955] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:52,959] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:54,263] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:54,263] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:54,282] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:54,282] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:54,677] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:54,678] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:54,706] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:54,706] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:54,844] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:54,844] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:54,881] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:54,881] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,027] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,027] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,061] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,061] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,202] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,202] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,234] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,250] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,370] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,371] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,385] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,385] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,552] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,552] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,579] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,579] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,728] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,728] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,746] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,746] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:55,901] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:55,901] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:55,919] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:55,935] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,076] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,076] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:56,092] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:56,092] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,253] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,253] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:56,289] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:56,289] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,404] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,405] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:56,418] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:56,418] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,572] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,572] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:56,608] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:56,608] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,747] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,747] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:56,766] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:56,766] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:05:56,969] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:05:56,969] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:05:57,003] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:05:57,019] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:50,508] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:50,508] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:50,535] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:50,535] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:50,616] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:50,616] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:50,672] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:50,678] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:53,342] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:53,342] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:53,357] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:53,357] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:54,088] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:54,088] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:54,109] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:54,111] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:54,584] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:54,584] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:54,597] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:54,607] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:54,767] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:54,767] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:54,790] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:54,794] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:54,948] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:54,948] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:54,973] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:54,973] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:55,131] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:55,131] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:55,154] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:55,154] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:55,291] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:55,291] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:55,321] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:55,327] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:55,427] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:55,427] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:55,453] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:55,468] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:55,811] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:55,811] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:55,846] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:55,850] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:55,978] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:55,978] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,000] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,000] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,138] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,139] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,153] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,169] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,322] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,322] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,347] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,347] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,481] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,481] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,519] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,523] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,642] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,642] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,666] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,682] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,809] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,809] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,817] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,817] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:56,955] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:56,955] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:56,979] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:56,979] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,123] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,123] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,138] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,138] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,284] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,285] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,311] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,311] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,454] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,454] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,463] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,478] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,613] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,613] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,634] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,637] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,781] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,781] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,803] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,803] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:57,933] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:57,933] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:57,959] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:57,959] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:58,086] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:58,087] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:58,109] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:58,109] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:15:58,322] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:15:58,322] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:15:58,346] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:15:58,346] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:05,851] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:05,851] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:05,881] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:05,881] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:07,316] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:07,316] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:07,343] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:07,343] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:15,263] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:15,264] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:15,281] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:15,283] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:16,729] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:16,729] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:16,746] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:16,748] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:18,785] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:18,785] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:18,810] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:18,810] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:20,266] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:20,266] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:20,285] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:20,297] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:22,307] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:22,307] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:22,341] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:22,350] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:23,852] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:23,852] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:23,886] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:23,888] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:27,201] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:27,201] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:27,210] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:27,225] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:28,191] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:28,191] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:28,218] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:28,218] 59 root - INFO - [PREDICT] Inference completed successfully
+[2026-01-21 22:16:29,048] 47 root - INFO - [PREDICT] Starting inference pipeline
+[2026-01-21 22:16:29,048] 52 root - INFO - [PREDICT] Applying preprocessing
+[2026-01-21 22:16:29,071] 56 root - INFO - [PREDICT] Generating predictions
+[2026-01-21 22:16:29,087] 59 root - INFO - [PREDICT] Inference completed successfully
