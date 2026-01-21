@@ -1,48 +1,60 @@
 import os
 import sys
 import joblib
+import pandas as pd
+
 from src.logger import logging
 from src.exception import CustomException
 
 class PredictionPipeline:
     def __init__(self):
         try:
-            model_path = os.path.join(
-                "artifacts", "model_trainer", "catboost.pkl"
+            self.preprocessor_path = os.path.join(
+                "artifacts", "data_transformation", "preprocessor.pkl"
+            )
+            self.model_path = os.path.join(
+                "artifacts", "model_trainer", "catboost_quantile.pkl"
             )
 
-            logging.info(f"[INIT] Loading model from {model_path}")
-            self.model = joblib.load(model_path)
+            logging.info("[INIT] Loading preprocessor")
+            self.preprocessor = joblib.load(self.preprocessor_path)
 
-            logging.info("[INIT] PredictionPipeline ready")
+            logging.info("[INIT] Loading trained model")
+            self.model = joblib.load(self.model_path)
+
+            logging.info("[INIT] PredictionPipeline initialized successfully")
 
         except Exception as e:
-            logging.exception("[INIT] Model loading failed")
+            logging.exception("[INIT] Failed to load model or preprocessor")
             raise CustomException(e, sys)
 
-    def predict(self, features):
+    # --------------------------------------------------
+    def predict(self, features: pd.DataFrame):
         """
-        Generate predictions using the trained CatBoost model.
+        Generate predictions using trained preprocessor + CatBoost model.
 
         Parameters
         ----------
-        features : pandas.DataFrame or array-like
-            Input features for prediction.
+        features : pd.DataFrame
+            Raw input features (same format as training data, without target)
 
         Returns
         -------
-        float or np.ndarray
-            Predicted quantile value(s).
-
-        Raises
-        ------
-        CustomException
-            If prediction fails.
+        np.ndarray
+            Predicted quantile values
         """
         try:
-            logging.info("[PREDICT] Starting inference")
+            logging.info("[PREDICT] Starting inference pipeline")
 
-            predictions = self.model.predict(features)
+            features = features.copy()
+
+            # Apply preprocessing
+            logging.info("[PREDICT] Applying preprocessing")
+            features_transformed = self.preprocessor.transform(features)
+
+            # Model prediction
+            logging.info("[PREDICT] Generating predictions")
+            predictions = self.model.predict(features_transformed)
 
             logging.info("[PREDICT] Inference completed successfully")
 

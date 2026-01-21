@@ -2,6 +2,11 @@ from src.logger import logging
 from src.exception import CustomException
 from catboost import CatBoostRegressor
 import sys
+import pandas as pd
+from pathlib import Path
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
 
 from sklearn.metrics import (
     mean_pinball_loss,
@@ -36,13 +41,11 @@ def get_catboost_model(quantile: float = 0.9):
         model = CatBoostRegressor(
             loss_function=f"Quantile:alpha={quantile}",
             eval_metric=f"Quantile:alpha={quantile}",
-            iterations=3000,
+            iterations=100,
             depth=8,
-            learning_rate=0.03,
-            l2_leaf_reg=5,
-            min_data_in_leaf=50,
+            learning_rate=0.05,
             random_seed=42,
-            verbose=False
+            verbose=True
         )
 
         logging.info("[MODEL INIT] CatBoost model initialized successfully.")
@@ -116,7 +119,7 @@ def get_metrics(model, X_test, y_test, quantile: float = 0.9):
         logging.info(
             f"[MODEL EVAL] Evaluation completed | "
             f"Pinball={pinball:.4f}, "
-            f"D²={d2:.4f}, "
+            f"D2={d2:.4f}, "
             f"Coverage={coverage:.4f}"
         )
 
@@ -125,3 +128,28 @@ def get_metrics(model, X_test, y_test, quantile: float = 0.9):
     except Exception as e:
         logging.error("[MODEL EVAL] Model evaluation failed.")
         raise CustomException(e, sys)
+
+def get_test_df() -> pd.DataFrame:
+    test_data = pd.read_csv(r'C:\Playground\Tail-Risk Modeling of Insurance Claim Severity\artifacts\data_ingestion\test.csv')
+    X_test = test_data.drop('loss', axis=1)
+    y_test = test_data.loss
+    return X_test, y_test
+
+def generate_tail_plot(y_test, actual, predicted):
+    fig, ax = plt.subplots(figsize=(6, 2))
+
+    ax.hist(y_test, bins=50, density=True, alpha=0.4, color="#94a3b8")
+    ax.axvline(actual, color="#ef4444", linestyle="--", label="Actual Loss")
+    ax.axvline(predicted, color="#6366f1", linewidth=2, label="Predicted τ=0.90")
+
+    ax.set_xlabel("Claim Loss")
+    ax.set_ylabel("Density")
+    ax.legend()
+
+    buf = BytesIO()
+    plt.tight_layout()
+    fig.savefig(buf, format="png")
+    plt.close(fig)
+
+    buf.seek(0)
+    return base64.b64encode(buf.read()).decode("utf-8")
