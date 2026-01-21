@@ -129,10 +129,17 @@ def get_metrics(model, X_test, y_test, quantile: float = 0.9):
         logging.error("[MODEL EVAL] Model evaluation failed.")
         raise CustomException(e, sys)
 
-def get_test_df() -> pd.DataFrame:
-    test_data = pd.read_csv(r'C:\Playground\Tail-Risk Modeling of Insurance Claim Severity\artifacts\data_ingestion\test.csv')
-    X_test = test_data.drop('loss', axis=1)
-    y_test = test_data.loss
+def get_test_df() -> tuple[pd.DataFrame, pd.Series]:
+    # Project root (adjust if needed)
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+    test_path = BASE_DIR / "artifacts" / "data_ingestion" / "test.csv"
+
+    test_data = pd.read_csv(test_path)
+
+    X_test = test_data.drop(columns=["loss"])
+    y_test = test_data["loss"]
+
     return X_test, y_test
 
 def generate_tail_plot(y_test, actual, predicted):
