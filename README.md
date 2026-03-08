@@ -13,9 +13,8 @@
 
 ---
 
-<p align="left">
-  <video src="assets/20260308-1647-09.7740132.mp4" width="85%" controls></video>
-</p>
+## 🎥 Click Image To Watch Demo Video
+[![Watch Demo](assets/image.png)](assets/20260308-1647-09.7740132.mp4)
 
 ---
 
