@@ -1,135 +1,78 @@
-# data_ingestion.py
-import os
-import sys
-from dataclasses import dataclass
-from typing import Tuple, Any
+# src/components/data_ingestion.py
 
-import pandas as pd
+import sys
+from pathlib import Path
+from dataclasses import dataclass
+
 from sklearn.model_selection import train_test_split
 
-from src.logger import logging
 from src.exception import CustomException
-from src.utils.main_utils import save_csv_file, read_yaml_file
-from database.connection import get_connection
-from database.queries import get_all_data
+from src.logger import get_logger
+from src.utils.db import fetch_dataframe
+from src.utils.io import save_csv_file
+
+logger = get_logger(__name__)
 
 
-@dataclass
+@dataclass(frozen=True)
 class DataIngestionConfig:
-    """
-    Holds all configurable paths needed during the data ingestion step.
-    These paths help me keep the ingestion outputs organized.
-    """
-    raw_data_dir: str = os.path.join("artifacts", "data_ingestion")
-    raw_data_path: str = os.path.join("artifacts", "data_ingestion", "raw.csv")
-    train_data_path: str = os.path.join("artifacts", "data_ingestion", "train.csv")
-    test_data_path: str = os.path.join("artifacts", "data_ingestion", "test.csv")
-    table_name_path: str = os.path.join("config", "database.yaml")
+    raw_data_path: Path = Path("artifacts") / "data_ingestion" / "raw.csv"
+    train_data_path: Path = Path("artifacts") / "data_ingestion" / "train.csv"
+    test_data_path: Path = Path("artifacts") / "data_ingestion" / "test.csv"
+    test_size: float = 0.2
+    random_state: int = 42
+    shuffle: bool = True
+
+
+@dataclass(frozen=True)
+class DataIngestionArtifact:
+    train_data_path: Path
+    test_data_path: Path
 
 
 class DataIngestion:
-    """
-    Handles the entire ingestion workflow.
-    Only one public method `initiate_data_ingestion()` should be used.
-    Everything else is private and not meant to be accessed outside.
-    """
+    def __init__(self, config: DataIngestionConfig = DataIngestionConfig()):
+        self.config = config
 
-    def __init__(self, config: DataIngestionConfig = DataIngestionConfig()) -> None:
-        """
-        Initialize ingestion with config and load YAML information.
-        I also ensure the raw-data folder exists before we start writing.
-        """
-        self._config = config
-        self._table_name_config: str = read_yaml_file(config.table_name_path)
-
-        os.makedirs(self._config.raw_data_dir, exist_ok=True)
-        logging.info(f"[INIT] Ensured data ingestion directory: {self._config.raw_data_dir}")
-
-    def _get_table_name(self) -> str:
-        """
-        Internal helper to fetch the correct table name from YAML.
-        """
-        table_name = self._table_name_config.get("table")
-
-        if not table_name:
-            raise ValueError("table not found in database.yaml")
-
-        return table_name
-
-    def _fetch_data_from_db(self) -> pd.DataFrame:
-        """
-        Internal method for connecting to DB and loading the entire table into a DataFrame.
-        """
+    def initiate_data_ingestion(self, query: str) -> DataIngestionArtifact:
         try:
-            table_name = self._get_table_name()
-            logging.info(f"[DB] Fetching data from table: {table_name}")
+            logger.info("--- Starting Data Ingestion Stage ---")
 
-            with get_connection() as conn:
-                stmt = get_all_data(table_name)
-                result = conn.execute(stmt)
-                df = pd.DataFrame(result.fetchall(), columns=result.keys())
+            # Fetch & Save Raw Data
+            data = fetch_dataframe(query)
+            logger.info("Ingested raw dataset from database. Shape: %s", data.shape)
 
-            logging.info(f"[DB] Data fetched → rows: {df.shape[0]}, columns: {df.shape[1]}")
-            return df
+            save_csv_file(data, self.config.raw_data_path)
+
+            # Split Dataset
+            train_data, test_data = train_test_split(
+                data,
+                test_size=self.config.test_size,
+                random_state=self.config.random_state,
+                shuffle=self.config.shuffle,
+            )
+            logger.info(
+                "Split dataset (test_size=%.2f) -> Train: %d rows | Test: %d rows",
+                self.config.test_size,
+                len(train_data),
+                len(test_data),
+            )
+
+            # Save Splitted Artifacts
+            save_csv_file(train_data, self.config.train_data_path)
+            save_csv_file(test_data, self.config.test_data_path)
+
+            logger.info(
+                "Saved artifacts successfully to directory: '%s'",
+                self.config.raw_data_path.parent,
+            )
+            logger.info("--- Data Ingestion Stage Completed ---")
+
+            return DataIngestionArtifact(
+                train_data_path=self.config.train_data_path,
+                test_data_path=self.config.test_data_path,
+            )
 
         except Exception as e:
-            logging.error("[ERROR] Database fetch failed.")
+            logger.exception("Data Ingestion stage failed.")
             raise CustomException(e, sys)
-
-    def _save_raw_data(self, df: pd.DataFrame) -> None:
-        """
-        Internal method to save the raw, untouched dataset.
-        """
-        save_csv_file(df, self._config.raw_data_path)
-        logging.info(f"[SAVE] Raw data stored at {self._config.raw_data_path}")
-
-    def _split_data(self, df: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
-        """
-        Internal method to split the dataset into train and test sets.
-        """
-        logging.info("[SPLIT] Performing train-test split (80-20)...")
-        train_set, test_set = train_test_split(
-            df, test_size=0.2, random_state=42, shuffle=True
-        )
-        logging.info(f"[SPLIT] Train: {train_set.shape}, Test: {test_set.shape}")
-        return train_set, test_set
-
-    def _save_splits(self, train: pd.DataFrame, test: pd.DataFrame) -> None:
-        """
-        Internal method to save train and test datasets.
-        """
-        save_csv_file(train, self._config.train_data_path)
-        logging.info(f"[SAVE] Train data saved to {self._config.train_data_path}")
-
-        save_csv_file(test, self._config.test_data_path)
-        logging.info(f"[SAVE] Test data saved to {self._config.test_data_path}")
-
-    def initiate_data_ingestion(self) -> Tuple[str, str]:
-        """
-        Public method that orchestrates the ingestion pipeline.
-        This is the only method the outside world should use.
-        """
-        logging.info("==== DATA INGESTION STARTED ====")
-
-        try:
-            df = self._fetch_data_from_db()
-            self._save_raw_data(df)
-
-            train_set, test_set = self._split_data(df)
-            self._save_splits(train_set, test_set)
-
-            logging.info("==== DATA INGESTION COMPLETED SUCCESSFULLY ====")
-
-            return self._config.train_data_path, self._config.test_data_path
-
-        except Exception as e:
-            logging.error("[FATAL] Ingestion pipeline failed.")
-            raise CustomException(e, sys)
-
-
-# Allow running this file directly for debugging
-if __name__ == "__main__":
-    ingestion = DataIngestion()
-    train_path, test_path = ingestion.initiate_data_ingestion()
-    print(f"✔ Train data saved to: {train_path}")
-    print(f"✔ Test data saved to: {test_path}")
