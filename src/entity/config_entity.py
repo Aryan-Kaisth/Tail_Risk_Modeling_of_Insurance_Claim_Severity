@@ -9,3 +9,9 @@ class DataIngestionConfig:
     test_size: float = 0.2
     random_state: int = 42
     shuffle: bool = True
+
+@dataclass(frozen=True)
+class DataValidationConfig:
+    validation_status_file_path: Path = Path("artifacts") / "data_validation" / "validation_status.txt"
+    validation_report_file_path: Path = Path("artifacts") / "data_validation" / "validation_report.json"
+    schema_file_path: Path = Path("config") / "schema.yaml"
